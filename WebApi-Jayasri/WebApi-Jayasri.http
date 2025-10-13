@@ -1,0 +1,6 @@
+@WebApi_Jayasri_HostAddress = http://localhost:5215
+
+GET {{WebApi_Jayasri_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
