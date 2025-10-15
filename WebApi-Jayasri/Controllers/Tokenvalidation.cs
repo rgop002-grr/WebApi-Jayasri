@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi_Jayasri.Controllers
@@ -7,15 +8,13 @@ namespace WebApi_Jayasri.Controllers
     [ApiController]
     public class Tokenvalidation : ControllerBase
     {
-        [HttpGet("data")]
-        public IActionResult GetSecureData()
+        [Authorize]
+        [HttpGet("Validate")]
+        public IActionResult validateToken()
         {
-            var username = User.Identity?.Name;
-            return Ok(new
             {
-                Message = $"Hello {username}, you have accessed a protected endpoint!"
-            });
+                return Ok("Authorized Successfully");
+            }
         }
-
     }
 }
