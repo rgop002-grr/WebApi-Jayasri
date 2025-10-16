@@ -25,22 +25,26 @@ namespace WebApi_Jayasri.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest request)
         {
-            // ✅ Step 1: Validate user (hardcoded for demo)
-            if (request.Username == "admin" && request.Password == "password")
+            // ✅ Step 1: Validate user credentials (demo only)
+            if ((request.Username == "admin" || request.Username == "user")
+                && request.Password == "password")
             {
-                // ✅ Step 2: Create claims (payload)
+                // ✅ Step 2: Assign role dynamically based on username
+                string userRole = request.Username == "admin" ? "Admin" : "User";
+
+                // ✅ Step 3: Create claims (include role)
                 var claims = new[]
                 {
-                    new Claim(ClaimTypes.Name, request.Username),
-                    new Claim(ClaimTypes.Role, "Admin"),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-                };
+            new Claim(ClaimTypes.Name, request.Username),
+            new Claim(ClaimTypes.Role, userRole),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+        };
 
-                // ✅ Step 3: Create key & credentials
+                // ✅ Step 4: Create key & credentials
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-                // ✅ Step 4: Generate token
+                // ✅ Step 5: Generate token
                 var token = new JwtSecurityToken(
                     issuer: "yourapp.com",
                     audience: "yourapp.com",
@@ -49,9 +53,11 @@ namespace WebApi_Jayasri.Controllers
                     signingCredentials: creds
                 );
 
-                // ✅ Step 5: Return token
+                // ✅ Step 6: Return token + role info
                 return Ok(new
                 {
+                    username = request.Username,
+                    role = userRole,
                     token = new JwtSecurityTokenHandler().WriteToken(token),
                     expiration = token.ValidTo
                 });
