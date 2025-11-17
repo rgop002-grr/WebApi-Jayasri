@@ -1,4 +1,5 @@
 ﻿using WebApi_Jayasri.Models;
+using WebApi_Jayasri.Repositories;
 
 namespace WebApi_Jayasri.Service
 {

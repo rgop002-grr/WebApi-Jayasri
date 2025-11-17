@@ -1,6 +1,6 @@
-﻿
+﻿using WebApi_Jayasri.Models;
 
-namespace WebApi_Jayasri.Models
+namespace WebApi_Jayasri.Repositories
 {
     public interface IStudentRepository
     {

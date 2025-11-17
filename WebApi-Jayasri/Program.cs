@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using WebApi_Jayasri.Models;
+using WebApi_Jayasri.Repositories;
 using WebApi_Jayasri.Service;
 
 var builder = WebApplication.CreateBuilder(args);

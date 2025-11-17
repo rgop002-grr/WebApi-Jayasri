@@ -1,7 +1,7 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using WebApi_Jayasri.Models;
 
-namespace WebApi_Jayasri.Models
+namespace WebApi_Jayasri.Repositories
 {
     public class StudentRepository: IStudentRepository
     {
@@ -23,3 +23,6 @@ namespace WebApi_Jayasri.Models
         }
     }
 }
+
+
+
