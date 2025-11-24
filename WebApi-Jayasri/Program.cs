@@ -4,6 +4,8 @@ using Microsoft.OpenApi.Models;
 using WebApi_Jayasri.Models;
 using WebApi_Jayasri.Repositories;
 using WebApi_Jayasri.Service;
+using WebApi_Jayasri.Interfaces;
+using WebApi_Jayasri.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -11,12 +13,16 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddTransient<ITransientGuidService, TransientGuidService>();
+builder.Services.AddScoped<IScopedGuidService, ScopedGuidService>();
+builder.Services.AddSingleton<ISingletonGuidService, SingletonGuidService>();
 
 
 // Add configuration
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 
 // Add services
