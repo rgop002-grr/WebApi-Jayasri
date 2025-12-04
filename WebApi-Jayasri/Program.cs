@@ -87,6 +87,9 @@ builder.Services.AddSwaggerGen(c =>
 
 
 var app = builder.Build();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 // Configure pipeline
 if (app.Environment.IsDevelopment())
