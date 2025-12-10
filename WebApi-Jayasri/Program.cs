@@ -97,6 +97,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.MapControllerRoute(
     name: "default",
     pattern: "api/{controller}/{action}/{id?}");
