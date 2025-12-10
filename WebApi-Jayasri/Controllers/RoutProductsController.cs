@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi_Jayasri.Controllers
 {
+    //Attribute routing Ovveride the conventional routing so  Conventional Routing without Work Attribute Routing
     [Route("api/[controller]")]
     [ApiController]
     public class RoutProductsController : ControllerBase
